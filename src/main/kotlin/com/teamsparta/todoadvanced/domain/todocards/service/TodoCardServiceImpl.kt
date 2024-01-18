@@ -42,11 +42,8 @@ class TodoCardServiceImpl(
     override fun updateTodoCard(todoId: Long, request: UpdateTodoCardRequest): TodoCardResponse {
         val todoCard = todoCardRepository.findByIdOrNull(todoId)
             ?: throw ModelNotFoundException("todoCard", todoId)
-
         todoCard.title = request.title
         todoCard.content = request.content
-
-
         return todoCardRepository.save(todoCard).toResponse()
     }
 

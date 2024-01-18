@@ -1,16 +1,22 @@
 package com.teamsparta.todoadvanced.domain.todocards.model
 
+import com.teamsparta.todoadvanced.domain.comments.model.Comment
 import jakarta.persistence.*
 
 
 @Entity
+@Table(name = "todo_card")
 class TodoCard(
-    @Column
+    @Column(name = "title", nullable = false)
     var title: String,
-    @Column
+    @Column(name = "content", nullable = false)
     var content: String,
-    //val comments: List<Comment> = emptyList(),
-    @Column
+    @OneToMany(
+        mappedBy = "todoCard",
+        fetch = FetchType.LAZY
+    )
+    var comments: MutableList<Comment> = mutableListOf(),
+    @Column(name = "author_name", nullable = false)
     var authorName: String, // User로 교체예정
 
 ) {
@@ -24,7 +30,7 @@ class TodoCard(
     val isCompleted: Boolean
         get() = _isCompleted
 
-    fun complete(){
+    fun complete() {
         _isCompleted = true
     }
 }
