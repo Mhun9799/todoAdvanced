@@ -1,4 +1,4 @@
-package com.teamsparta.todoadvanced.domain.posts.dto
+package com.teamsparta.todoadvanced.domain.todocards.dto
 
 data class TodoCardResponse(
     val id: Long,

@@ -1,4 +1,4 @@
-package com.teamsparta.todoadvanced.domain.posts.model
+package com.teamsparta.todoadvanced.domain.todocards.model
 
 import jakarta.persistence.*
 

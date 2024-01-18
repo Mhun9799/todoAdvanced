@@ -1,9 +1,8 @@
-package com.teamsparta.todoadvanced.domain.posts.service
+package com.teamsparta.todoadvanced.domain.todocards.service
 
-import com.teamsparta.todoadvanced.domain.posts.dto.CreateTodoCardRequest
-import com.teamsparta.todoadvanced.domain.posts.dto.TodoCardResponse
-import com.teamsparta.todoadvanced.domain.posts.dto.UpdateTodoCardRequest
-import com.teamsparta.todoadvanced.domain.posts.model.TodoCard
+import com.teamsparta.todoadvanced.domain.todocards.dto.CreateTodoCardRequest
+import com.teamsparta.todoadvanced.domain.todocards.dto.TodoCardResponse
+import com.teamsparta.todoadvanced.domain.todocards.dto.UpdateTodoCardRequest
 
 interface TodoCardService {
 

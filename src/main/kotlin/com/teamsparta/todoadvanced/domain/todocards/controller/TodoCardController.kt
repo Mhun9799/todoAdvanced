@@ -1,9 +1,9 @@
-package com.teamsparta.todoadvanced.domain.posts.controller
+package com.teamsparta.todoadvanced.domain.todocards.controller
 
-import com.teamsparta.todoadvanced.domain.posts.dto.CreateTodoCardRequest
-import com.teamsparta.todoadvanced.domain.posts.dto.TodoCardResponse
-import com.teamsparta.todoadvanced.domain.posts.dto.UpdateTodoCardRequest
-import com.teamsparta.todoadvanced.domain.posts.service.TodoCardService
+import com.teamsparta.todoadvanced.domain.todocards.dto.CreateTodoCardRequest
+import com.teamsparta.todoadvanced.domain.todocards.dto.TodoCardResponse
+import com.teamsparta.todoadvanced.domain.todocards.dto.UpdateTodoCardRequest
+import com.teamsparta.todoadvanced.domain.todocards.service.TodoCardService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

@@ -1,11 +1,11 @@
-package com.teamsparta.todoadvanced.domain.posts.service
+package com.teamsparta.todoadvanced.domain.todocards.service
 
 import com.teamsparta.todoadvanced.domain.exception.ModelNotFoundException
-import com.teamsparta.todoadvanced.domain.posts.dto.CreateTodoCardRequest
-import com.teamsparta.todoadvanced.domain.posts.dto.TodoCardResponse
-import com.teamsparta.todoadvanced.domain.posts.dto.UpdateTodoCardRequest
-import com.teamsparta.todoadvanced.domain.posts.model.TodoCard
-import com.teamsparta.todoadvanced.domain.posts.repository.TodoCardRepository
+import com.teamsparta.todoadvanced.domain.todocards.dto.CreateTodoCardRequest
+import com.teamsparta.todoadvanced.domain.todocards.dto.TodoCardResponse
+import com.teamsparta.todoadvanced.domain.todocards.dto.UpdateTodoCardRequest
+import com.teamsparta.todoadvanced.domain.todocards.model.TodoCard
+import com.teamsparta.todoadvanced.domain.todocards.repository.TodoCardRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
