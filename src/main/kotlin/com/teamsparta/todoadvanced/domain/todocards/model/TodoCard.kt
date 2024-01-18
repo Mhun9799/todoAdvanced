@@ -6,12 +6,12 @@ import jakarta.persistence.*
 @Entity
 class TodoCard(
     @Column
-    val title: String,
+    var title: String,
     @Column
-    val content: String,
+    var content: String,
     //val comments: List<Comment> = emptyList(),
     @Column
-    val authorName: String, // User로 교체예정
+    var authorName: String, // User로 교체예정
 
 ) {
     @Id

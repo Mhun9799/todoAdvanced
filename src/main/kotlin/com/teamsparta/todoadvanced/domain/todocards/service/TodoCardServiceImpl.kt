@@ -43,7 +43,11 @@ class TodoCardServiceImpl(
         val todoCard = todoCardRepository.findByIdOrNull(todoId)
             ?: throw ModelNotFoundException("todoCard", todoId)
 
-        return todoCard.toResponse()
+        todoCard.title = request.title
+        todoCard.content = request.content
+
+
+        return todoCardRepository.save(todoCard).toResponse()
     }
 
     @Transactional
