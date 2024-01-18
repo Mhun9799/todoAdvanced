@@ -6,9 +6,11 @@ import com.teamsparta.todoadvanced.domain.todocards.dto.TodoCardResponse
 import com.teamsparta.todoadvanced.domain.todocards.dto.UpdateTodoCardRequest
 import com.teamsparta.todoadvanced.domain.todocards.model.TodoCard
 import com.teamsparta.todoadvanced.domain.todocards.repository.TodoCardRepository
+import org.hibernate.Hibernate
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.format.DateTimeFormatter
 
 @Service
 class TodoCardServiceImpl(
@@ -35,6 +37,8 @@ class TodoCardServiceImpl(
     override fun findTodoCard(todoId: Long): TodoCardResponse {
         val todoCard = todoCardRepository.findByIdOrNull(todoId)
             ?: throw ModelNotFoundException("todoCard", todoId)
+
+
         return todoCard.toResponse()
     }
 
@@ -66,10 +70,12 @@ class TodoCardServiceImpl(
 
 
 fun TodoCard.toResponse(): TodoCardResponse {
+    val date = createdDate!!.format(DateTimeFormatter.ofPattern("yyyyMMdd"))
     return TodoCardResponse(
         id = id!!,
         title = title,
         content = content,
         authorName = authorName,
+        date = date
     )
 }
