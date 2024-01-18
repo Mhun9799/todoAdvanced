@@ -1,6 +1,7 @@
 package com.teamsparta.todoadvanced.domain.comments.model
 
 import com.teamsparta.todoadvanced.domain.todocards.model.TodoCard
+import com.teamsparta.todoadvanced.domain.users.model.User
 import jakarta.persistence.*
 
 @Entity
@@ -9,14 +10,13 @@ class Comment(
     @Column(name = "content", nullable = false)
     var content: String,
 
-    @Column(name = "author_name", nullable = false)
-    val authorName: String,
+    @ManyToOne(fetch = FetchType.LAZY)
+    val authorName: User,
 
     @Column(name = "password", nullable = false)
     val password: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "todo_id", nullable = false)
     var todoCard: TodoCard
 
 ) {

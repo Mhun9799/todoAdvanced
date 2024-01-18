@@ -52,7 +52,6 @@ fun Comment.toResponse(): CommentResponse {
     return CommentResponse(
         id = id!!,
         content = content,
-        authorName = authorName,
     )
 }
 

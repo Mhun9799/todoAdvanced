@@ -1,6 +1,7 @@
 package com.teamsparta.todoadvanced.domain.todocards.model
 
 import com.teamsparta.todoadvanced.domain.comments.model.Comment
+import com.teamsparta.todoadvanced.domain.users.model.User
 import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -23,8 +24,8 @@ class TodoCard(
         fetch = FetchType.LAZY
     )
     var comments: MutableList<Comment> = mutableListOf(),
-    @Column(name = "author_name", nullable = false)
-    var authorName: String, // User로 교체예정
+    @ManyToOne
+    var authorName: User,
 
 ) {
     @Id
