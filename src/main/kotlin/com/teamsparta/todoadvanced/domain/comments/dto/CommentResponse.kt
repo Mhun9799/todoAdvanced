@@ -5,6 +5,4 @@ data class CommentResponse(
     val content: String,
     //val user: User
     val authorName : String,
-
-
 )

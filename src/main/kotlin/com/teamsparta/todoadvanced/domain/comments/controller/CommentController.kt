@@ -2,6 +2,7 @@ package com.teamsparta.todoadvanced.domain.comments.controller
 
 import com.teamsparta.todoadvanced.domain.comments.dto.CommentResponse
 import com.teamsparta.todoadvanced.domain.comments.dto.CreateCommentRequest
+import com.teamsparta.todoadvanced.domain.comments.dto.UpdateCommentRequest
 import com.teamsparta.todoadvanced.domain.comments.service.CommentService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -23,17 +24,30 @@ class CommentController(
     fun createComment(
         @PathVariable todoCardId: Long,
         @RequestBody commentRequest: CreateCommentRequest
-    ): ResponseEntity<CommentResponse>{
+    ): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(commentService.createComment(todoCardId,commentRequest))
+            .body(commentService.createComment(todoCardId, commentRequest))
     }
+
     @PostMapping("/{commentId}")
-    fun updateComment(){
-        TODO()
+    fun updateComment(
+        @PathVariable todoCardId: Long,
+        @PathVariable commentId: Long,
+        @RequestBody commentRequest: UpdateCommentRequest,
+    ): ResponseEntity<CommentResponse> {
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(commentService.updateComment(todoCardId, commentId, commentRequest))
     }
-    @DeleteMapping("/{commnetId}")
-    fun deleteComment(){
-        TODO()
+
+    @DeleteMapping("/{commentId}")
+    fun deleteComment(
+        @PathVariable todoCardId: Long,
+        @PathVariable commentId: Long,
+    ): ResponseEntity<Unit> {
+        return ResponseEntity
+            .status(HttpStatus.NO_CONTENT)
+            .body(commentService.deleteComment(todoCardId, commentId))
     }
 }

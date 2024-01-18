@@ -40,7 +40,7 @@ class CommentServiceImpl(
     }
 
     @Transactional
-    override fun deleteComment(todoId: Long, commentId: Long, authorName: String, password: String) {
+    override fun deleteComment(todoId: Long, commentId: Long) {
         val comment = commentRepository.findByIdOrNull(commentId)
             ?: throw ModelNotFoundException("comment", commentId)
         commentRepository.delete(comment)
