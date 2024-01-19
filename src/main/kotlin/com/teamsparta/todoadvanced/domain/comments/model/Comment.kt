@@ -11,7 +11,7 @@ class Comment(
     var content: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    val authorName: User,
+    val user: User,
 
     @Column(name = "password", nullable = false)
     val password: String,

@@ -7,6 +7,7 @@ data class TodoCardResponse(
     val title: String,
     val content: String,
     val date: String,
+    val user: User,
 
-)
+    )
 

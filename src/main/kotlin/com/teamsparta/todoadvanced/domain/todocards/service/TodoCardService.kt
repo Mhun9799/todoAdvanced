@@ -6,7 +6,7 @@ import com.teamsparta.todoadvanced.domain.todocards.dto.UpdateTodoCardRequest
 
 interface TodoCardService {
 
-    fun createTodoCard(request: CreateTodoCardRequest): TodoCardResponse
+    fun createTodoCard(userId:Long, request: CreateTodoCardRequest): TodoCardResponse
 
     fun findTodoCardList():List<TodoCardResponse>
 

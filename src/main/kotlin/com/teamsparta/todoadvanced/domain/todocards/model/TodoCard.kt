@@ -25,7 +25,8 @@ class TodoCard(
     )
     var comments: MutableList<Comment> = mutableListOf(),
     @ManyToOne
-    var authorName: User,
+    @JoinColumn(name = "author_name", nullable = false)
+    var user: User,
 
 ) {
     @Id

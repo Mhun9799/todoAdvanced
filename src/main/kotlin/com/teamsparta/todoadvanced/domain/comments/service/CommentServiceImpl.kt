@@ -7,6 +7,7 @@ import com.teamsparta.todoadvanced.domain.comments.model.Comment
 import com.teamsparta.todoadvanced.domain.comments.repository.CommentRepository
 import com.teamsparta.todoadvanced.domain.exception.ModelNotFoundException
 import com.teamsparta.todoadvanced.domain.todocards.repository.TodoCardRepository
+import com.teamsparta.todoadvanced.domain.users.repository.UserRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -16,14 +17,17 @@ import org.springframework.transaction.annotation.Transactional
 class CommentServiceImpl(
     private val commentRepository: CommentRepository,
     private val todoRepository: TodoCardRepository,
+    private val userRepository: UserRepository
 ) : CommentService {
-    override fun createComment(todoId: Long, request: CreateCommentRequest): CommentResponse {
+    override fun createComment(userId:Long,todoId: Long, request: CreateCommentRequest): CommentResponse {
         val todoCard = todoRepository.findByIdOrNull(todoId)
             ?: throw ModelNotFoundException("todoCard", todoId)
+        val user = userRepository.findByIdOrNull(userId)
+            ?: throw ModelNotFoundException("user", userId)
         return commentRepository.save(
             Comment(
                 content = request.content,
-                authorName = todoCard.authorName,
+                user= user,
                 password = request.password,
                 todoCard = todoCard,
             )
@@ -52,6 +56,7 @@ fun Comment.toResponse(): CommentResponse {
     return CommentResponse(
         id = id!!,
         content = content,
+        user = user
     )
 }
 
