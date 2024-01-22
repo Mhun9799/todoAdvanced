@@ -1,16 +1,13 @@
 package com.teamsparta.todoadvanced.domain.users.controller
 
+import com.teamsparta.todoadvanced.domain.users.dto.LoginRequest
 import com.teamsparta.todoadvanced.domain.users.dto.CreateUserRequest
+import com.teamsparta.todoadvanced.domain.users.dto.LoginResponse
 import com.teamsparta.todoadvanced.domain.users.dto.UserResponse
 import com.teamsparta.todoadvanced.domain.users.service.UserService
 import org.springframework.http.HttpStatus
-import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
-
+import org.springframework.web.bind.annotation.*
 @RequestMapping("users")
 @RestController
 class UserController(private val userService: UserService) {
@@ -21,10 +18,11 @@ class UserController(private val userService: UserService) {
         return ResponseEntity(creatUserResponse, HttpStatus.CREATED)
     }
 
-    /*@PostMapping("/sign-in")
-    fun signIn(){
-        TODO()
-    }*/
+    @PostMapping("/login")
+    fun login(@RequestBody loginRequest: LoginRequest): ResponseEntity<LoginResponse>{
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(userService.login(loginRequest))
 
-
+    }
 }

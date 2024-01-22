@@ -1,6 +1,7 @@
 package com.teamsparta.todoadvanced.domain.users.dto
 
-data class UserResponse (
-    val id: Long?,
+
+data class LoginRequest(
     val username: String,
+    val password: String,
 )

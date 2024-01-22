@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class TodoCardController(private val todoCardService: TodoCardService) {
     @PostMapping
-    fun createTodoCard(@RequestBody todoCardRequest: CreateTodoCardRequest): ResponseEntity<TodoCardResponse> {
+    fun createTodoCard(@PathVariable userId: Long, @RequestBody todoCardRequest: CreateTodoCardRequest): ResponseEntity<TodoCardResponse> {
 
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(todoCardService.createTodoCard(todoCardRequest))
+            .body(todoCardService.createTodoCard(userId,todoCardRequest))
     }
 
     @GetMapping("/{todoCardId}")

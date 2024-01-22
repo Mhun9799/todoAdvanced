@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional
 class CommentServiceImpl(
     private val commentRepository: CommentRepository,
     private val todoRepository: TodoCardRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) : CommentService {
     override fun createComment(userId:Long,todoId: Long, request: CreateCommentRequest): CommentResponse {
         val todoCard = todoRepository.findByIdOrNull(todoId)
