@@ -39,7 +39,7 @@ class SecurityConfig(
                     "/index.html",
                     "/signup.html",
                     "/error",
-                    
+
                 ).permitAll()
                     .anyRequest().authenticated()
             }

@@ -1,10 +1,13 @@
 package com.teamsparta.todoadvanced.infra.security.jwt
 
+import com.teamsparta.todoadvanced.infra.security.UserPrincipal
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication
 import org.springframework.http.HttpHeaders
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
@@ -23,14 +26,22 @@ class JwtAuthenticationFilter(
         filterChain: FilterChain
     ) {
         val jwt = request.getBearerToken()
-        if (jwt != null){
-            jwtPlugin.validateToken(jwt)
-                .onSuccess {
-                    val userId = it.payload.subject.toLong()
-                    val userName = it.payload.get("username",String::class.java)
 
+        jwt?.let { token ->
+            jwtPlugin.validateToken(token)
+                .onSuccess { decoded ->
+                    val userId = decoded.payload.subject.toLong()
+                    val username = decoded.payload.get("username", String::class.java)
+
+                    val userPrincipal = UserPrincipal(userId, username)
+                    val details = WebAuthenticationDetailsSource().buildDetails(request)
+                    val auth = JwtAuthenticationToken(userPrincipal, details)
+
+                    SecurityContextHolder.getContext().authentication = auth
                 }
         }
+
+        filterChain.doFilter(request, response)
     }
 
     private fun HttpServletRequest.getBearerToken(): String? {
