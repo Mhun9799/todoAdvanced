@@ -6,6 +6,8 @@ plugins {
     kotlin("jvm") version "1.9.21"
     kotlin("plugin.spring") version "1.9.21"
     kotlin("plugin.noarg") version "1.8.22"
+    kotlin("plugin.allopen") version "1.8.22"
+    kotlin("kapt") version "1.8.22" // 추가!
 }
 
 group = "com.teamsparta"
@@ -27,6 +29,12 @@ repositories {
     maven { url = uri("https://repo.spring.io/snapshot") }
 }
 
+val queryDslVersion = "5.0.0"
+
+val kotestVersion = "5.5.5" // 추가!
+
+val mockkVersion = "1.13.8" // 추가!
+
 noArg {
     annotation("jakarta.persistence.Entity")
     annotation("jakarta.persistence.MappedSuperclass")
@@ -47,10 +55,16 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("io.jsonwebtoken:jjwt-api:0.12.3")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("com.querydsl:querydsl-jpa:$queryDslVersion:jakarta")
+    kapt("com.querydsl:querydsl-apt:$queryDslVersion:jakarta")
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion") // 추가 !!
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion") // 추가 !!
+    testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.3") // 추가 !!
+    testImplementation("io.mockk:mockk:$mockkVersion") // 추가 !!
 
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.3")

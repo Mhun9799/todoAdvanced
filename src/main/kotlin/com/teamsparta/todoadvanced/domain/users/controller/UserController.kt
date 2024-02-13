@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class UserController(private val userService: UserService) {
 
-    @PostMapping
+    @PostMapping("/signup")
     fun createUser(@RequestBody userRequest: CreateUserRequest): ResponseEntity<UserResponse> {
         val creatUserResponse = userService.createUser(userRequest)
         return ResponseEntity(creatUserResponse, HttpStatus.CREATED)
