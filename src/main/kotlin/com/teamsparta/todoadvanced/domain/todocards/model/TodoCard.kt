@@ -6,12 +6,16 @@ import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
+import java.time.ZonedDateTime
 
 
 @Entity
 @Table(name = "todo_card")
 @EntityListeners(AuditingEntityListener::class)
 class TodoCard(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
     @Column(name = "title", nullable = false)
     var title: String,
     @Column(name = "content", nullable = false)
@@ -28,10 +32,12 @@ class TodoCard(
     @JoinColumn(name = "author_name", nullable = false)
     var user: User,
 
+    @CreatedDate
+    @Column(updatable = false)
+    val createdAt: ZonedDateTime = ZonedDateTime.now()
+
 ) {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
+
 
     @Column(name = "is_completed")
     private var _isCompleted: Boolean = false
